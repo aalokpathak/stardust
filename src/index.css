@@ -1,0 +1,503 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Cascadia Mono", "Cascadia Code", Consolas, monospace;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  --color-layer: var(--layer);
+  --color-card: var(--card);
+  --color-card-solid: var(--card-solid);
+  --color-hover: var(--hover);
+  --color-press: var(--press);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-fill: var(--accent-fill);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: #ffffff;
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-ok: var(--ok);
+  --color-star: var(--star);
+
+  --ease-fluent: cubic-bezier(0, 0, 0, 1);
+}
+
+/* Fluent's layered fills: everything sits on Mica as a translucent sheet. */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+  --window: transparent;
+  --layer: rgba(255, 255, 255, 0.5);
+  --card: rgba(255, 255, 255, 0.7);
+  --card-solid: #fbfbfb;
+  --hover: rgba(0, 0, 0, 0.0373);
+  --press: rgba(0, 0, 0, 0.0241);
+  --line: rgba(0, 0, 0, 0.0803);
+  --line-strong: rgba(0, 0, 0, 0.1622);
+  --ink: rgba(0, 0, 0, 0.894);
+  --ink-2: rgba(0, 0, 0, 0.64);
+  --ink-3: rgba(0, 0, 0, 0.56);
+  --accent: #7e22ce;
+  --accent-fill: #9333ea;
+  --accent-hover: #7e22ce;
+  --accent-soft: rgba(147, 51, 234, 0.1);
+  --danger: #c42b1c;
+  --danger-soft: rgba(196, 43, 28, 0.1);
+  --ok: #0f7b0f;
+  --star: #b7791f;
+  --code-bg: rgba(0, 0, 0, 0.0373);
+  --selection: rgba(147, 51, 234, 0.22);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --layer: rgba(58, 58, 58, 0.3);
+  --card: rgba(255, 255, 255, 0.0512);
+  --card-solid: #2b2b2b;
+  --hover: rgba(255, 255, 255, 0.0605);
+  --press: rgba(255, 255, 255, 0.0419);
+  --line: rgba(255, 255, 255, 0.0837);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --ink: #ffffff;
+  --ink-2: rgba(255, 255, 255, 0.786);
+  --ink-3: rgba(255, 255, 255, 0.58);
+  --accent: #d0a8ff;
+  --accent-fill: #9333ea;
+  --accent-hover: #a24bf0;
+  --accent-soft: rgba(192, 132, 252, 0.16);
+  --danger: #ff99a4;
+  --danger-soft: rgba(255, 153, 164, 0.14);
+  --ok: #6ccb5f;
+  --star: #f0c14b;
+  --code-bg: rgba(255, 255, 255, 0.0605);
+  --selection: rgba(192, 132, 252, 0.3);
+}
+
+/* Without Mica behind it (Windows 10, older builds) the window has to be opaque. */
+:root.no-mica {
+  --window: #f3f3f3;
+}
+:root.no-mica[data-theme="dark"] {
+  --window: #202020;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--window);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  cursor: default;
+}
+
+/* Only runs for a deliberate theme switch, never while typing or scrolling. */
+.theme-transition,
+.theme-transition * {
+  transition:
+    background-color 240ms var(--ease-fluent),
+    border-color 240ms var(--ease-fluent),
+    color 240ms var(--ease-fluent),
+    fill 240ms var(--ease-fluent) !important;
+}
+
+::selection {
+  background: var(--selection);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-radius: 4px;
+}
+
+input,
+textarea {
+  user-select: text;
+  cursor: text;
+}
+
+button {
+  cursor: default;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border: 3px solid transparent;
+  border-radius: 8px;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-3);
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.caption-icon {
+  font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets";
+  font-size: 10px;
+  line-height: 1;
+}
+
+.field {
+  height: 32px;
+  width: 100%;
+  padding: 0 10px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  border-bottom-color: var(--line-strong);
+  background: var(--card);
+  color: var(--ink);
+  transition: border-color 120ms var(--ease-fluent);
+}
+.field:hover {
+  background: var(--hover);
+}
+.field:focus {
+  outline: none;
+  background: var(--card);
+  border-bottom: 2px solid var(--accent);
+}
+.field::placeholder {
+  color: var(--ink-3);
+}
+
+dialog {
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--card-solid);
+  color: var(--ink);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
+  animation: pop-in 180ms var(--ease-fluent);
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.menu-surface {
+  background: var(--card-solid);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  animation: pop-in 120ms var(--ease-fluent);
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--dx), var(--dy));
+  }
+}
+
+.page-in {
+  animation: page-in 220ms var(--ease-fluent);
+}
+
+.toast-in {
+  animation: toast-in 200ms var(--ease-fluent);
+}
+
+/* The note editor */
+.stardust-editor {
+  --editor-font: var(--font-sans);
+  font-family: var(--editor-font);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  user-select: text;
+  cursor: text;
+  overflow-wrap: anywhere;
+}
+.stardust-editor[data-font="serif"] {
+  --editor-font: var(--font-serif);
+}
+.stardust-editor[data-font="mono"] {
+  --editor-font: var(--font-mono);
+  font-size: 15px;
+}
+
+.stardust-editor .ProseMirror {
+  min-height: 50vh;
+  padding-bottom: 96px;
+  outline: none;
+}
+
+.prose-note > * + * {
+  margin-top: 0.7em;
+}
+.prose-note h1,
+.prose-note h2,
+.prose-note h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.prose-note h1 {
+  margin-top: 1.1em;
+  font-size: 30px;
+}
+.prose-note h2 {
+  margin-top: 1em;
+  font-size: 24px;
+}
+.prose-note h3 {
+  margin-top: 0.9em;
+  font-size: 20px;
+}
+.prose-note ul,
+.prose-note ol {
+  padding-left: 1.5em;
+}
+.prose-note ul {
+  list-style: disc;
+}
+.prose-note ol {
+  list-style: decimal;
+}
+.prose-note li + li {
+  margin-top: 0.2em;
+}
+.prose-note li > p + * {
+  margin-top: 0.2em;
+}
+.prose-note blockquote {
+  padding-left: 14px;
+  border-left: 3px solid var(--accent-fill);
+  color: var(--ink-2);
+}
+.prose-note hr {
+  margin: 1.4em 0;
+  border: 0;
+  border-top: 1px solid var(--line-strong);
+}
+.prose-note a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-note code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--code-bg);
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+}
+.prose-note pre {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--code-bg);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.55;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+.prose-note pre code {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+}
+
+.prose-note ul[data-type="taskList"] {
+  padding-left: 0;
+  list-style: none;
+}
+.prose-note ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.prose-note ul[data-type="taskList"] li > label {
+  margin-top: 0.26em;
+  flex: none;
+}
+.prose-note ul[data-type="taskList"] li > label input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-fill);
+  cursor: default;
+}
+.prose-note ul[data-type="taskList"] li > div {
+  flex: 1;
+  min-width: 0;
+}
+.prose-note ul[data-type="taskList"] li[data-checked="true"] > div {
+  color: var(--ink-3);
+  text-decoration: line-through;
+}
+
+.stardust-editor .is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: var(--ink-3);
+  pointer-events: none;
+}
+
+/* Code colours, shared by both themes through their own tokens */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-type {
+  color: var(--accent);
+}
+.hljs-string,
+.hljs-attr,
+.hljs-template-tag {
+  color: var(--ok);
+}
+.hljs-comment,
+.hljs-quote {
+  color: var(--ink-3);
+  font-style: italic;
+}
+.hljs-number,
+.hljs-literal,
+.hljs-title,
+.hljs-title.function_ {
+  color: var(--star);
+}
+
+#print-root {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+/* The PDF. Colours are fixed here because a page is white whatever the app theme is. */
+@media print {
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+    background: #ffffff;
+    color: #1f2328;
+    user-select: auto;
+  }
+  #root {
+    display: none;
+  }
+  #print-root {
+    display: block;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    orphans: 3;
+    widows: 3;
+    --ink-2: #4b5563;
+    --ink-3: #6b7280;
+    --line: #e5e7eb;
+    --line-strong: #d1d5db;
+    --accent: #6d28d9;
+    --accent-fill: #7c3aed;
+    --code-bg: #f3f4f6;
+  }
+  .print-header {
+    margin-bottom: 22pt;
+    padding-bottom: 10pt;
+    border-bottom: 1pt solid #d1d5db;
+  }
+  .print-header h1 {
+    margin: 0;
+    color: #111827;
+    font-family: "Segoe UI Semibold", "Segoe UI", sans-serif;
+    font-size: 26pt;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .print-header p {
+    margin: 6pt 0 0;
+    color: #6b7280;
+    font-size: 9.5pt;
+  }
+  .print-body h1,
+  .print-body h2,
+  .print-body h3 {
+    color: #111827;
+    font-family: "Segoe UI Semibold", "Segoe UI", sans-serif;
+    break-after: avoid;
+  }
+  .print-body h1 {
+    font-size: 19pt;
+  }
+  .print-body h2 {
+    font-size: 15pt;
+  }
+  .print-body h3 {
+    font-size: 12.5pt;
+  }
+  .print-body pre {
+    font-size: 9pt;
+    break-inside: avoid;
+  }
+  .print-body blockquote,
+  .print-body li {
+    break-inside: avoid;
+  }
+}

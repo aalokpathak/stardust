@@ -1,0 +1,44 @@
+{
+  "name": "stardust",
+  "private": true,
+  "version": "0.1.0",
+  "description": "scattered thoughts, gathered",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "dist": "tauri build && node scripts/collect-release.mjs --installers",
+    "dist:portable": "tauri build --no-bundle && node scripts/collect-release.mjs"
+  },
+  "dependencies": {
+    "@fluentui/react-icons": "^2.0.345",
+    "@tauri-apps/api": "^2.12.4",
+    "@tauri-apps/plugin-opener": "^2.7.2",
+    "@tiptap/core": "^3.32.2",
+    "@tiptap/extension-code-block-lowlight": "^3.32.2",
+    "@tiptap/extension-list": "^3.32.2",
+    "@tiptap/extension-text-style": "^3.32.2",
+    "@tiptap/extensions": "^3.32.2",
+    "@tiptap/pm": "^3.32.2",
+    "@tiptap/react": "^3.32.2",
+    "@tiptap/starter-kit": "^3.32.2",
+    "highlight.js": "^11.12.0",
+    "lowlight": "^3.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zustand": "^5.0.16"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@tauri-apps/cli": "^2.12.4",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.5"
+  }
+}
