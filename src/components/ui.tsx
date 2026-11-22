@@ -29,7 +29,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 const VARIANTS = {
   primary: "bg-accent-fill text-on-accent hover:bg-accent-hover border-transparent",
   secondary: "bg-card text-ink hover:bg-hover border-line border-b-line-strong",
-  danger: "bg-[#c42b1c] text-on-accent hover:bg-[#b02618] border-transparent",
+  danger: "bg-[#c42b1c] text-white hover:bg-[#b02618] border-transparent",
   ghost: "text-ink-2 hover:bg-hover hover:text-ink border-transparent",
 };
 

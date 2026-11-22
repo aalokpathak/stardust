@@ -25,6 +25,7 @@ Builds aren't code-signed yet, so Windows SmartScreen may ask you to confirm bef
 - **Context-aware creation.** New notes land in the folder you're in, or in the root when you're on Home.
 - **Rich text.** Headings, bold, italic, font sizes, lists, checklists, quotes and code blocks with syntax highlighting.
 - **Snippet capture.** Paste anywhere outside a text box and it becomes a note. Pasted code becomes a code block.
+- **Clear formatting.** Text pasted from a web page or document keeps its fonts, colours and sizes. One click, or Ctrl+Space, turns it back into plain paragraphs.
 - **To-Do.** Tasks, checklists, due dates and reminders with Windows notifications while the app is running.
 - **Export.** `.txt`, `.md` and paginated `.pdf`.
 
@@ -91,3 +92,4 @@ The portable build is recognised by the word `portable` in its file name, so kee
 | Ctrl+\\ | Show or hide the sidebar |
 | Alt+Left | Go back |
 | F2 | Rename the selected folder |
+| Ctrl+Space | Clear formatting from the selection, or from the current paragraph |

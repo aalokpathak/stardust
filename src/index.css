@@ -22,7 +22,7 @@
   --color-accent-fill: var(--accent-fill);
   --color-accent-hover: var(--accent-hover);
   --color-accent-soft: var(--accent-soft);
-  --color-on-accent: #ffffff;
+  --color-on-accent: var(--on-accent);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
   --color-ok: var(--ok);
@@ -31,7 +31,9 @@
   --ease-fluent: cubic-bezier(0, 0, 0, 1);
 }
 
-/* Fluent's layered fills: everything sits on Mica as a translucent sheet. */
+/* Fluent's layered fills: everything sits on Mica as a translucent sheet.
+   The accent is the icon's green, and gold from its star marks highlights. Like Windows 11,
+   dark mode uses a light accent with dark text on it rather than a dark fill. */
 :root,
 :root[data-theme="light"] {
   color-scheme: light;
@@ -46,16 +48,18 @@
   --ink: rgba(0, 0, 0, 0.894);
   --ink-2: rgba(0, 0, 0, 0.64);
   --ink-3: rgba(0, 0, 0, 0.56);
-  --accent: #7e22ce;
-  --accent-fill: #9333ea;
-  --accent-hover: #7e22ce;
-  --accent-soft: rgba(147, 51, 234, 0.1);
+  --accent: #17654a;
+  --accent-fill: #1f7a5a;
+  --accent-hover: #186449;
+  --accent-soft: rgba(31, 122, 90, 0.1);
+  --on-accent: #ffffff;
   --danger: #c42b1c;
   --danger-soft: rgba(196, 43, 28, 0.1);
   --ok: #0f7b0f;
-  --star: #b7791f;
+  --star: #8a6200;
   --code-bg: rgba(0, 0, 0, 0.0373);
-  --selection: rgba(147, 51, 234, 0.22);
+  --code-string: #a3461f;
+  --selection: rgba(31, 122, 90, 0.2);
 }
 
 :root[data-theme="dark"] {
@@ -70,16 +74,18 @@
   --ink: #ffffff;
   --ink-2: rgba(255, 255, 255, 0.786);
   --ink-3: rgba(255, 255, 255, 0.58);
-  --accent: #d0a8ff;
-  --accent-fill: #9333ea;
-  --accent-hover: #a24bf0;
-  --accent-soft: rgba(192, 132, 252, 0.16);
+  --accent: #74d3aa;
+  --accent-fill: #74d3aa;
+  --accent-hover: #8adcb9;
+  --accent-soft: rgba(116, 211, 170, 0.14);
+  --on-accent: #06281c;
   --danger: #ff99a4;
   --danger-soft: rgba(255, 153, 164, 0.14);
   --ok: #6ccb5f;
-  --star: #f0c14b;
+  --star: #ffd66b;
   --code-bg: rgba(255, 255, 255, 0.0605);
-  --selection: rgba(192, 132, 252, 0.3);
+  --code-string: #e8a27c;
+  --selection: rgba(116, 211, 170, 0.28);
 }
 
 /* Without Mica behind it (Windows 10, older builds) the window has to be opaque. */
@@ -401,7 +407,7 @@ dialog::backdrop {
 .hljs-string,
 .hljs-attr,
 .hljs-template-tag {
-  color: var(--ok);
+  color: var(--code-string);
 }
 .hljs-comment,
 .hljs-quote {
@@ -453,8 +459,8 @@ dialog::backdrop {
     --ink-3: #6b7280;
     --line: #e5e7eb;
     --line-strong: #d1d5db;
-    --accent: #6d28d9;
-    --accent-fill: #7c3aed;
+    --accent: #17654a;
+    --accent-fill: #1f7a5a;
     --code-bg: #f3f4f6;
   }
   .print-header {

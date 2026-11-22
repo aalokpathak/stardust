@@ -57,7 +57,7 @@ function QuickCapture() {
 
   return (
     <div className="flex items-start gap-2 rounded-lg border border-line bg-card p-2 transition-colors duration-100 focus-within:border-b-accent">
-      <Sparkle20Filled className="mt-1.5 ml-1 shrink-0 text-accent" />
+      <Sparkle20Filled className="mt-1.5 ml-1 shrink-0 text-star" />
       <textarea
         aria-label="Quick capture"
         rows={1}

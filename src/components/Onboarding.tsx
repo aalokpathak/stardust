@@ -4,11 +4,11 @@ import { Button } from "./ui";
 
 // The logo's scattered particles, drifting around it while the app waits for a name.
 const PARTICLES = [
-  { left: "-44px", top: "6px", size: 7, color: "#38bdf8", dx: "8px", dy: "6px", duration: "6s" },
-  { left: "118px", top: "-14px", size: 9, color: "#ec4899", dx: "-6px", dy: "8px", duration: "7s" },
-  { left: "136px", top: "74px", size: 6, color: "#a855f7", dx: "-8px", dy: "-6px", duration: "5.5s" },
-  { left: "-30px", top: "88px", size: 8, color: "#38bdf8", dx: "7px", dy: "-7px", duration: "6.5s" },
-  { left: "22px", top: "-30px", size: 5, color: "#c084fc", dx: "5px", dy: "7px", duration: "5s" },
+  { left: "-44px", top: "6px", size: 7, color: "#FFD66B", dx: "8px", dy: "6px", duration: "6s" },
+  { left: "118px", top: "-14px", size: 9, color: "#FFD66B", dx: "-6px", dy: "8px", duration: "7s" },
+  { left: "136px", top: "74px", size: 6, color: "#3FA37E", dx: "-8px", dy: "-6px", duration: "5.5s" },
+  { left: "-30px", top: "88px", size: 8, color: "#3FA37E", dx: "7px", dy: "-7px", duration: "6.5s" },
+  { left: "22px", top: "-30px", size: 5, color: "#FFE7A3", dx: "5px", dy: "7px", duration: "5s" },
 ];
 
 export function Onboarding() {

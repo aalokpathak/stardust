@@ -1,3 +1,4 @@
+import { Extension, type Editor } from "@tiptap/core";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { TaskItem, TaskList } from "@tiptap/extension-list";
 import { TextStyleKit } from "@tiptap/extension-text-style";
@@ -38,6 +39,25 @@ const lowlight = createLowlight({
   xml,
 });
 
+/**
+ * Strips text styles and block types back to plain paragraphs. Text pasted from web pages
+ * and documents brings its fonts, colours and sizes along, and this is how to shed them.
+ * With nothing selected it clears the paragraph the cursor is in.
+ */
+export function clearFormatting(editor: Editor) {
+  const { empty, $from } = editor.state.selection;
+  let chain = editor.chain().focus();
+  if (empty) chain = chain.setTextSelection({ from: $from.start(), to: $from.end() });
+  return chain.unsetAllMarks().clearNodes().run();
+}
+
+const ClearFormatting = Extension.create({
+  name: "clearFormatting",
+  addKeyboardShortcuts() {
+    return { "Mod-Space": () => clearFormatting(this.editor) };
+  },
+});
+
 /** The note schema, shared by the live editor and the exporters so they can't disagree. */
 export const extensions = [
   StarterKit.configure({
@@ -50,4 +70,5 @@ export const extensions = [
   TaskList,
   TaskItem.configure({ nested: true }),
   Placeholder.configure({ placeholder: "Start writing. Everything saves itself." }),
+  ClearFormatting,
 ];

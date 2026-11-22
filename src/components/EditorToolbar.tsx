@@ -13,6 +13,7 @@ import {
   TaskListLtr20Regular,
   TextBold20Regular,
   TextBulletListLtr20Regular,
+  TextClearFormatting20Regular,
   TextItalic20Regular,
   TextNumberListLtr20Regular,
   TextQuote20Regular,
@@ -20,6 +21,7 @@ import {
   TextUnderline20Regular,
 } from "@fluentui/react-icons";
 import { useEditorState, type Editor } from "@tiptap/react";
+import { clearFormatting } from "../lib/extensions";
 import { exportItems, moveNoteToFolder } from "../lib/menus";
 import { openMenuBelow, trashNote, useStore, type MenuItem } from "../lib/store";
 import { IconButton } from "./ui";
@@ -173,6 +175,9 @@ export function EditorToolbar({ editor, noteId }: { editor: Editor; noteId: stri
       </IconButton>
       <IconButton label="Strikethrough" active={state.strike} onClick={() => chain().toggleStrike().run()}>
         <TextStrikethrough20Regular />
+      </IconButton>
+      <IconButton label="Clear formatting (Ctrl+Space)" onClick={() => clearFormatting(editor)}>
+        <TextClearFormatting20Regular />
       </IconButton>
       <Divider />
 
